@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+
+{% block header %}
+<title>{{ "Todo修改" }}</title>
+{% end %}
+
+{% block edit %}
+ {% if todo.id == edit.id %}
+ <form action="?" method="post" class="row alert alert-warning" role="form">
+    <div class="input-group">
+        <input type="text" class="form-control" name="title" value="{{ todo.title }}">
+        <span class="input-group-btn">
+            <button class="btn btn-success" type="submit">确定</button>
+        </span>
+    </div>
+ </form>
+ {% else %}
+ {% if todo.finished == 0 %}
+               <div class="alert alert-success row"><div class="col-md-8">{{ todo.title }}</div>
+           <div class="command col-md-4">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/todo/{{ todo.id }}/finish?status=yes" class="btn btn-success disabled">完成</a>
+             <a href="/todo/{{ todo.id }}/edit" class="btn btn-warning disabled">修改</a>
+            {% else %}
+               <div class="alert alert-danger row"><div class="col-md-8"><del>{{ todo.title }}</del></div>
+            
+           <div class="command col-md-4">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/todo/{{ todo.id }}/finish?status=no" class="btn btn-primary disabled">恢复</a>
+            {% end %}
+
+            
+            <a href="/todo/{{ todo.id }}/delete" class="btn btn-danger disabled">删除</a></div></div>
+ {% end %}
+
+
+{% end %}

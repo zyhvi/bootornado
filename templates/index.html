@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ '待办事项' }}</title>
+{% end %}
+
+
+{% block body %}
+   
+
+ <form action="/todo/new" method="post" class="row" role="form">
+     
+          <div class="input-group">
+            <input type="text" class="form-control" name="title" placeholder="Todo List">
+            <span class="input-group-btn">
+              <button class="btn btn-success" type="submit">添加</button>
+            </span>
+          </div><!-- /input-group -->
+        
+   </form>
+    
+    
+    
+    {% for todo in todos %}
+       
+ 
+        {% block edit %}
+            {% if todo.finished == 0 %}
+               <div class="alert alert-success row"><div class="col-md-8">{{ todo.title }}</div>
+           <div class="command col-md-4">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/todo/{{ todo.id }}/finish?status=yes" class="btn btn-success">完成</a>
+             <a href="/todo/{{ todo.id }}/edit" class="btn btn-warning">修改</a>
+            {% else %}
+               <div class="alert alert-danger row"><div class="col-md-8"><del>{{ todo.title }}</del></div>
+            
+           <div class="command col-md-4">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="/todo/{{ todo.id }}/finish?status=no" class="btn btn-primary">恢复</a>
+            {% end %}
+
+            
+            <a href="/todo/{{ todo.id }}/delete" class="btn btn-danger" role="button" onclick="return confirm('删除以后不能恢复的，确定？')">删除</a></div></div>
+          
+        {% end %}
+    {% end %}
+
+
+
+{% end %}

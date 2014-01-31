@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+<meta charset="utf-8">
+<link href="{{ static_url("css/bootstrap.min.css") }}" rel="stylesheet">
+<link href="{{ static_url("css/style.css") }}" rel="stylesheet">
+
+<script type="text/javascript src={{ static_url("js/bootstrap.js") }}"></script>
+<script type="text/javascript src={{ static_url("js/ja.js") }}"></script>
+<script type="text/javascript src={{ static_url("js/jquery.js") }}"></script>
+
+
+{% block head %}{% end %}
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="/">Todo</a>
+    </div>
+       
+    <form class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default">搜索</button>
+   </form>
+</div>
+
+<div class="jumbotron">
+<div class="container">
+  <div class="row">
+   <div class="col-md-2"></div>
+   <div class="col-md-8">
+    
+    <h1><span class="glyphicon glyphicon-pushpin">待办事项</span></h1>
+    {% block body %}{% end %}
+    
+  </div>
+   <div class="col-md-2"></div>
+    
+    </div>
+</div>
+</div>
+
+<div class="navbar navbar-fixed-bottom navbar-inverse" role="navigation">
+<div class="footer">
+    &copy;zhang 2014&nbsp;&nbsp;&nbsp;Powered by <a href="">Tornado</a>&<a href="">Bootstrap</a>
+</div>
+</div>
+</body>
+</html>
+
